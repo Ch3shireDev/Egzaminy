@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ExamService {
-  url = '/assets/exams';
+  url = 'https://ch3shiredev.github.io/Egzaminy/assets/exams';
 
   getExam(id: string) {
     return this.httpClient
@@ -19,7 +19,7 @@ export class ExamService {
 
   public getFile() {
     return this.httpClient
-      .get('/assets/exams/egzamin-1.md', {
+      .get(`${this.url}/egzamin-1.md`, {
         responseType: 'text',
       })
       .pipe(map((res) => new Exam('egzamin-1', res)));
@@ -27,7 +27,7 @@ export class ExamService {
 
   public getExams(): Observable<Exam[]> {
     return this.httpClient
-      .get('/assets/exams/egzamin-1.md', { responseType: 'text' })
+      .get(`${this.url}/egzamin-1.md`, { responseType: 'text' })
       .pipe(map((res: string) => [new Exam('egzamin-1', res)]));
   }
 }
