@@ -1,0 +1,7 @@
+<div class="p-5">
+  <ul class="list-group" *ngFor="let exam of exams">
+    <li class="list-group-item">
+      <a routerLink="/exam/{{ exam.id }}">{{ exam.name }}</a>
+    </li>
+  </ul>
+</div>

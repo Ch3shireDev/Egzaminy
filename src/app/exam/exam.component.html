@@ -1,0 +1,46 @@
+<div class="p-5" *ngIf="exam">
+  <h3>{{ exam.name }}</h3>
+  <div *ngIf="currentExercise">
+    <div class="px-5 pt-3 mt-5 rounded border bg-light shadow">
+      <h5>{{ currentTitle }}</h5>
+      <p>{{ currentExercise.question }}</p>
+      <ul class="list-group" *ngFor="let answer of currentExercise.answers">
+        <li
+          class="list-group-item text-left"
+          (click)="setAnswer(answer)"
+          [class.btn]="!picked"
+          [class.btn-light]="!picked"
+          [class.bg-danger]="answer.picked && !answer.correct"
+          [class.bg-success]="answer.picked && answer.correct"
+          [class.text-white]="answer.picked"
+        >
+          {{ answer.content }}
+        </li>
+      </ul>
+      <div class="py-3 d-flex">
+        <div class="flex-fill text-center">
+          <button
+            class="btn btn-info"
+            (click)="previous()"
+
+            [disabled]="currentExercise.first"
+          >
+            Poprzedni
+          </button>
+        </div>
+        <div class="flex-fill text-center">
+          <button
+            class="btn btn-primary"
+            (click)="next()"
+            [disabled]="currentExercise.last || !picked"
+          >
+            Następny
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5">
+    <button class="btn btn-lg btn-primary" routerLink="/">Wróć</button>
+  </div>
+</div>
